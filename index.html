@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> -->
+    <meta content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no"
+        name="viewport">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <title>CV Template with page resize</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font: 12pt Arial;
+            font-size: min(1vw, 1.778vh);
+            overflow-x: hidden;
+        }
+
+        #layout {
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+            -moz-transform-origin: 0 0;
+            transform: scale(1,1);
+            display: table-cell;
+            transition: transform 0.1s ;
+            min-width: 21cm;
+        }
+
+        .page {
+            width: 21cm;
+            min-height: 29.7cm;
+            border: 1px #D3D3D3 solid;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cv-content {
+            padding: 10px;
+        }
+
+        /* Adjust CV content styles as needed */
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .section-content {
+            font-size: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            word-wrap: break-word;
+        }
+
+        @font-face {
+            font-family: "Montserrat-Regular";
+            font-style: normal;
+            font-weight: normal;
+            src: url("https://careery-assets.s3.eu-west-1.amazonaws.com/Fonts/Montserrat-Regular.woff") format("woff");
+        }
+
+        @font-face {
+            font-family: "Montserrat-Bold";
+            font-style: normal;
+            font-weight: normal;
+            src: url("https://careery-assets.s3.eu-west-1.amazonaws.com/Fonts/Montserrat-Medium.woff") format("woff");
+        }
+
+        :host {
+            --cv-main-color-template: #00ab67;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        p {
+            font-family: "Montserrat-Regular", sans-serif;
+        }
+
+        @page {
+            size: 7in 9.25in;
+            margin: 27mm 16mm 27mm 16mm;
+            size: A4 landscape;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .separate-line {
+            width: 100%;
+            height: 2px;
+            background-color: #AEB0B3;
+        }
+
+        .fw-semibold {
+            font-weight: 600;
+        }
+
+        .uppercase {
+            text-transform: uppercase !important;
+        }
+
+        .cv-text-decor-none {
+            text-decoration: none !important;
+        }
+
+        .cv-text-capital {
+            text-transform: capitalize !important;
+        }
+
+        .ln-3 {
+            line-height: 1.8;
+        }
+
+        .text-8 {
+            font-size: 8px;
+        }
+
+        .text-10 {
+            /* font-size: 10px; */
+            font-size: 0.82rem;
+        }
+
+        .separate-line.first-top {
+            margin-top: 1.3519rem;
+        }
+
+        .bullet {
+            width: 14px;
+            height: 14px;
+        }
+
+        .bullet-fill {
+            background-color: var(--cv-main-color-template, #00ab67);
+        }
+
+        .cv-mt-0\.4 {
+            margin-top: 0.4rem !important;
+        }
+
+        .bullet-empty {
+            background-color: #D9D9D9;
+        }
+
+        .mt-item {
+            margin-top: 0.8125rem;
+        }
+
+        .rounded {
+            border-radius: 50%;
+        }
+
+        .main-section-heading-en-1 {
+            width: 100%;
+            position: relative;
+            margin-bottom: 1.5rem;
+            white-space: nowrap;
+        }
+
+        .main-section-heading-en-1.mt {
+            margin-top: 1.125rem;
+        }
+
+        .main-section-heading-en-1::after {
+            content: "";
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            left: 0;
+            bottom: -0.9375rem;
+            background-color: #AEB0B3;
+        }
+
+        .main-section-heading-en-1 span {
+            display: inline-block;
+            margin-right: 0.4rem;
+            font-size: 14px;
+            color: var(--cv-main-color-template, #00ab67);
+            text-transform: uppercase;
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        .main-section-heading-en-1 svg {
+            width: 16px;
+            height: 16px;
+            margin-top: 0.35rem;
+        }
+
+        .clear-fix {
+            clear: both;
+        }
+
+        .cv-individual-template {
+            /* width: 90%; */
+            min-height: 10rem;
+            margin: 0 auto;
+            padding: 1.75rem;
+            position: relative;
+        }
+
+        .cv-individual-template__tree {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        .cv-individual-template__header {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .cv-individual-template__header__left {
+            width: 75%;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .cv-individual-template__header__left__image {
+            width: 9.125rem;
+            height: 9.125rem;
+            margin-right: 2rem;
+            border-radius: 50%;
+            float: left;
+        }
+
+        .cv-individual-template__header__left__name {
+            width: auto;
+            margin-top: 0;
+            margin-inline: auto;
+
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        .cv-individual-template__header__left__name span {
+            display: block;
+            text-align: left;
+            margin-top: 0;
+            font-size: 2rem !important;
+            font-weight: 500 !important;
+            text-transform: uppercase;
+            letter-spacing: 1rem !important;
+            word-wrap: break-word;
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        /* .cv-individual-template__header__left__name span {
+             margin-top: 1.28125rem;
+         } */
+
+        @media (min-width: 992px) and (max-width: 1100px) {
+            .cv-individual-template__header__left__name span {
+                letter-spacing: 0.7rem;
+            }
+        }
+
+        .cv-individual-template__header__right {
+            width: 25%;
+            text-align: right;
+            float: right;
+            height: 8.125rem;
+        }
+
+        .cv-individual-template__header__right img {
+            width: 9.5rem !important;
+            height: 100%;
+        }
+
+        .cv-individual-template__job-title {
+            margin: 1.1625rem 0;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: "Montserrat-Bold", sans-serif !important;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 5.46px;
+            color: #2D2C2D;
+        }
+
+        .cv-individual-template__body {
+            width: 100%;
+            margin-top: 2.75rem;
+            position: relative;
+            direction: ltr;
+        }
+
+        .cv-individual-template__body__side {
+            width: 26%;
+            height: 100%;
+            float: left;
+            position: relative;
+            margin-right: 3rem;
+            text-align: left !important;
+        }
+
+        .cv-individual-template__body__line {
+            width: 0;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 29%;
+            border: 1px dashed #AEB0B3;
+        }
+
+        .cv-individual-template__body__main {
+            width: 67%;
+            height: 100%;
+            float: right;
+            text-align: left !important;
+        }
+
+        .cv-individual-template__body__side__contact__list {
+            width: 100%;
+            font-family: "Montserrat-Bold", sans-serif !important;
+            /* font-weight: 700; */
+        }
+
+        .cv-individual-template__body__side__contact__list li {
+            width: 100%;
+            margin-bottom: 0.77rem;
+            word-wrap: break-word;
+        }
+
+        .cv-individual-template__body__side__contact__list li a {
+            display: block;
+            color: #2D2C2D;
+        }
+
+        .cv-individual-template__body__side__contact__list li a span {
+            font-weight: 600;
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        .cv-individual-template__body__side__contact__list li>span {
+            display: block;
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        .cv-individual-template__body__side__contact__list li>span:first-child {
+            text-transform: capitalize;
+            font-weight: 600;
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        cv-individual-template__body__side__contact__list li>a span {
+            text-transform: capitalize;
+            font-weight: unset;
+        }
+
+        .cv-individual-template__body__side__contact__list li span:nth-child(1) {
+            font-size: 0.87rem;
+        }
+
+        .cv-individual-template__body__side__contact__list li span:nth-child(2) {
+            font-size: 0.8rem;
+        }
+
+        .cv-card {
+            /* margin-bottom: 1.6875rem; */
+            /* margin-bottom: 1.5rem; */
+            margin-bottom: 0.88rem;
+        }
+
+        .cv-card .cv-card__title {
+            font-size: 0.88rem;
+            font-family: "Montserrat-Bold", sans-serif !important;
+            font-weight: 600;
+        }
+
+        .cv-card .cv-card__title .cv-card__title__start {
+            float: left;
+        }
+
+        .cv-card .cv-card__title .cv-card__title__start span {
+            text-transform: none !important;
+        }
+
+        .cv-card .cv-card__title .cv-card__body__date {
+            float: right;
+            color: var(--cv-main-color-template, #00ab67);
+            font-weight: 500;
+        }
+
+        .cv-card .cv-card__title .first,
+        .cv-card .cv-card__title .second,
+        .cv-card .cv-card__title .third {
+            /* width: 100%; */
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        .cv-card .cv-card__body .cv-card__body__description {
+            margin-top: 0.4rem;
+            margin-bottom: 0.8125rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        .cv-card .cv-card__body .cv-card__body__date {
+            margin-bottom: 0.6rem;
+            margin-top: 0.3rem;
+            color: var(--cv-main-color-template, #00ab67);
+            /* color: #444444; */
+            font-size: 12px;
+            /* font-weight: 700; */
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        .cv-card .cv-card__body .cv-card__body__grade {
+            /* margin-left: 1rem; */
+            font-size: 12px;
+            text-transform: capitalize;
+            color: #444444;
+            font-family: "Montserrat-Bold", sans-serif !important;
+        }
+
+        .cv-card .cv-card__body .cv-card__body__grade .actual-grade {
+            color: #252525;
+        }
+
+        .cv-skill-body {
+            width: 100%;
+        }
+
+        .cv-skill-body__row {
+            width: 100%;
+        }
+
+        .cv-skill-body__item {
+            width: 100%;
+            float: left;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .cv-skill-body__item::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: black;
+        }
+
+        .cv-skill-body__item:nth-child(n + 2) {
+            margin-top: 0.6125rem;
+        }
+
+        .cv-skill-body__item span {
+            font-size: 13px;
+            font-weight: 700;
+            color: #2D2C2D;
+        }
+
+        .cv-skill-body__item span:nth-child(2) {
+            float: right;
+        }
+
+        .cv-languages-body {
+            width: 100%;
+        }
+
+        .cv-languages-body__item {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .cv-languages-body__item:nth-child(n + 2) {
+            margin-top: 0.8125rem;
+        }
+
+        .cv-languages-body__item span {
+            /* width: 100%; */
+            display: inline-block;
+            font-size: 0.75rem;
+        }
+
+        .cv-languages-body__item span:nth-child(1) {
+            float: left;
+            text-transform: capitalize;
+        }
+
+        .cv-languages-body__item span:nth-child(2) {
+            float: right;
+        }
+
+        .cv-individual-template__qr-code {
+            width: 7rem;
+            height: 7rem;
+            position: absolute;
+            bottom: 1%;
+            right: 3%;
+        }
+
+        .cv-individual-template__copyright {
+            margin-top: 4.4375rem;
+            text-align: center !important;
+            font-size: 8.5px;
+            color: #AAAAAA;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6" id="wrapper">
+            <div class="page" id="layout">
+                <div class="cv-content">
+
+                    <div class="cv-individual-template">
+
+
+                        <div class="cv-individual-template__header">
+                            <div class="cv-individual-template__header__left">
+
+
+                                <div class="cv-individual-template__header__left__name">
+                                    <span>ahmed</span>
+                                    <span>nakeeb</span>
+                                </div>
+
+                                <div class="clear-fix"></div>
+                            </div>
+
+                            <div class="cv-individual-template__header__right">
+                                <img src="https://careery-assets.s3.eu-west-1.amazonaws.com/images/logo.png" alt="Logo"
+                                    draggable="false">
+                            </div>
+
+                            <div class="clear-fix"></div>
+                        </div>
+
+                        <div class="separate-line first-top"></div>
+
+                        <p class="cv-individual-template__job-title">
+                            Full stack Developer
+                        </p>
+
+                        <div class="separate-line"></div>
+
+                        <div class="cv-individual-template__body">
+                            <div class="cv-individual-template__body__side">
+
+                                <div class="cv-individual-template__body__side_about">
+                                    <div class="main-section-heading-en-1 fw-semibold">
+                                        <span>about me</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 18.141 19.488">
+                                            <path id="Path_21385" data-name="Path 21385"
+                                                d="M0,2.229S9.1,5.219,15.614,0c-3,11.643-14.605,11.933-14.605,11.933C5.071,8.752,5.917,5.9,5.917,5.9S3.145,5.825,0,2.229Z"
+                                                transform="translate(7.807 19.488) rotate(-120)"
+                                                fill="var(--cv-main-color-template, #00ab67)" />
+                                        </svg>
+                                    </div>
+
+                                    <p class="ln-3 text-10" [innerHTML]="">
+                                        I have good basic skills and I am looking for System Manager in a big
+                                        organization. I am
+                                        willing to work hard and flexible. I can work alone or in a team. I am keen to
+                                        learn and
+                                        succeed
+                                    </p>
+                                </div>
+
+                                <div class="cv-individual-template__body__side__contact">
+                                    <div class="main-section-heading-en-1 mt fw-semibold">
+                                        <span>contact</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 18.141 19.488">
+                                            <path id="Path_21385" data-name="Path 21385"
+                                                d="M0,2.229S9.1,5.219,15.614,0c-3,11.643-14.605,11.933-14.605,11.933C5.071,8.752,5.917,5.9,5.917,5.9S3.145,5.825,0,2.229Z"
+                                                transform="translate(7.807 19.488) rotate(-120)"
+                                                fill="var(--cv-main-color-template, #00ab67)" />
+                                        </svg>
+                                    </div>
+
+                                    <ul class="cv-individual-template__body__side__contact__list">
+
+                                        <li>
+                                            <span>address:</span>
+                                            <span>Egypt - Cairo</span>
+                                        </li>
+
+
+                                        <li>
+                                            <span>mobile:</span>
+
+                                            <span>1096577485</span>
+
+                                        </li>
+
+
+                                        <li>
+                                            <span>email:</span>
+
+                                            <span>nakeeb.alqemam@gmail.com</span>
+
+                                        </li>
+
+
+
+
+                                        <li>
+                                            <a href="https://tfs20.alqemam.com:8443/tfs/LinkedIn"
+                                                class="cv-text-decor-none">
+                                                <span class="cv-text-capital" style="margin-right: 7px;">linkedin</span>
+
+                                                <svg class="link-icon" fill="none" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    viewBox="0 0 24 24" width="17" height="17"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    style="color: var(--cv-main-color-template, #00ab67); vertical-align: sub;">
+                                                    <path
+                                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                    <polyline points="15 3 21 3 21 9" />
+                                                    <line x1="10" x2="21" y1="14" y2="3" />
+                                                </svg>
+
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+
+                                <div class="cv-individual-template__body__side__skills">
+                                    <div class="main-section-heading-en-1 mt fw-semibold">
+                                        <span>skills</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 18.141 19.488">
+                                            <path id="Path_21385" data-name="Path 21385"
+                                                d="M0,2.229S9.1,5.219,15.614,0c-3,11.643-14.605,11.933-14.605,11.933C5.071,8.752,5.917,5.9,5.917,5.9S3.145,5.825,0,2.229Z"
+                                                transform="translate(7.807 19.488) rotate(-120)"
+                                                fill="var(--cv-main-color-template, #00ab67)" />
+                                        </svg>
+                                    </div>
+
+                                    <div class="cv-skill-body">
+
+                                        <div class="cv-skill-body__item">
+                                            <span class="uppercase">time management</span>
+
+                                            <!-- Add binding of skill degree here -->
+                                            <span>good</span>
+
+                                            <div class="clear-fix"></div>
+                                        </div>
+
+                                        <div class="clear-fix"></div>
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="cv-individual-template__body__side_languages">
+                                    <div class="main-section-heading-en-1 mt fw-semibold">
+                                        <span>languages</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 18.141 19.488">
+                                            <path id="Path_21385" data-name="Path 21385"
+                                                d="M0,2.229S9.1,5.219,15.614,0c-3,11.643-14.605,11.933-14.605,11.933C5.071,8.752,5.917,5.9,5.917,5.9S3.145,5.825,0,2.229Z"
+                                                transform="translate(7.807 19.488) rotate(-120)"
+                                                fill="var(--cv-main-color-template, #00ab67)" />
+                                        </svg>
+                                    </div>
+
+                                    <div class="cv-languages-body">
+
+
+                                        <div class="cv-languages-body__item">
+                                            <span>Afrikaans</span>
+                                            <span>fluent</span>
+                                        </div>
+
+
+
+                                        <div class="cv-languages-body__item">
+                                            <span>العربية</span>
+                                            <span>middle e</span>
+                                        </div>
+
+
+
+                                        <div class="cv-languages-body__item">
+                                            <span>Afrikaans</span>
+                                            <span>middle e</span>
+                                        </div>
+
+
+
+                                        <div class="clear-fix"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="cv-individual-template__body__line"></div>
+
+                            <div class="cv-individual-template__body__main">
+
+                                <div class="cv-individual-template__body__main__experience">
+                                    <div class="main-section-heading-en-1 fw-semibold">
+                                        <span>experience</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 18.141 19.488">
+                                            <path id="Path_21385" data-name="Path 21385"
+                                                d="M0,2.229S9.1,5.219,15.614,0c-3,11.643-14.605,11.933-14.605,11.933C5.071,8.752,5.917,5.9,5.917,5.9S3.145,5.825,0,2.229Z"
+                                                transform="translate(7.807 19.488) rotate(-120)"
+                                                fill="var(--cv-main-color-template, #00ab67)" />
+                                        </svg>
+                                    </div>
+
+
+                                    <div class="cv-card">
+                                        <div class="cv-card__title">
+                                            <div class="cv-card__title__start">
+                                                <span class="first">سبسثب</span>
+                                                <!-- &nbsp;-&nbsp; -->
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+
+                                            <div class="cv-card__title__end cv-mt-0.4">
+                                                <span class="second">بسبسقب</span>
+
+                                                <p class="cv-card__body__date">2023 - 2023</p>
+
+                                                <div class="clear-fix"></div>
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+                                        </div>
+
+                                        <div class="cv-card__body">
+                                            <p class="cv-card__body__description text-10" [innerHTML]="">
+                                                سبصثبصسب
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="cv-card">
+                                        <div class="cv-card__title">
+                                            <div class="cv-card__title__start">
+                                                <span class="first">sdfswf</span>
+                                                <!-- &nbsp;-&nbsp; -->
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+
+                                            <div class="cv-card__title__end cv-mt-0.4">
+                                                <span class="second">wefesrf</span>
+
+                                                <p class="cv-card__body__date">2023 - 2023</p>
+
+                                                <div class="clear-fix"></div>
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+                                        </div>
+
+                                        <div class="cv-card__body">
+                                            <p class="cv-card__body__description text-10" [innerHTML]="">
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="cv-individual-template__body__main__courses">
+                                    <div class="main-section-heading-en-1 fw-semibold">
+                                        <span>courses & certificates</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 18.141 19.488">
+                                            <path id="Path_21385" data-name="Path 21385"
+                                                d="M0,2.229S9.1,5.219,15.614,0c-3,11.643-14.605,11.933-14.605,11.933C5.071,8.752,5.917,5.9,5.917,5.9S3.145,5.825,0,2.229Z"
+                                                transform="translate(7.807 19.488) rotate(-120)"
+                                                fill="var(--cv-main-color-template, #00ab67)" />
+                                        </svg>
+                                    </div>
+
+
+                                    <div class="cv-card">
+                                        <div class="cv-card__title">
+                                            <div class="cv-card__title__start">
+                                                <span class="first">بلابلا</span>
+                                                <!-- &nbsp;-&nbsp; -->
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+
+                                            <div class="cv-card__title__end cv-mt-0.4">
+                                                <span class="second">بالبلا</span>
+
+                                                <p class="cv-card__body__date">2022/09/29 - 2022/10/08</p>
+
+                                                <div class="clear-fix"></div>
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+                                        </div>
+
+                                        <div class="cv-card__body">
+                                            <p class="cv-card__body__description text-10" [innerHTML]="">
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="cv-card">
+                                        <div class="cv-card__title">
+                                            <div class="cv-card__title__start">
+                                                <span class="first">سشيبسيب</span>
+                                                <!-- &nbsp;-&nbsp; -->
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+
+                                            <div class="cv-card__title__end cv-mt-0.4">
+                                                <span class="second">سيبسيب</span>
+
+                                                <p class="cv-card__body__date">2022/09/30 - 2022/10/08</p>
+
+                                                <div class="clear-fix"></div>
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+                                        </div>
+
+                                        <div class="cv-card__body">
+                                            <p class="cv-card__body__description text-10" [innerHTML]="">
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="cv-card">
+                                        <div class="cv-card__title">
+                                            <div class="cv-card__title__start">
+                                                <span class="first">sdfsdf</span>
+                                                <!-- &nbsp;-&nbsp; -->
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+
+                                            <div class="cv-card__title__end cv-mt-0.4">
+                                                <span class="second">sfdsdf</span>
+
+                                                <p class="cv-card__body__date">2022/11/15 - 2022/12/07</p>
+
+                                                <div class="clear-fix"></div>
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+                                        </div>
+
+                                        <div class="cv-card__body">
+                                            <p class="cv-card__body__description text-10" [innerHTML]="">
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="cv-card">
+                                        <div class="cv-card__title">
+                                            <div class="cv-card__title__start">
+                                                <span class="first">jhjhj</span>
+                                                <!-- &nbsp;-&nbsp; -->
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+
+                                            <div class="cv-card__title__end cv-mt-0.4">
+                                                <span class="second">hjhjh</span>
+
+                                                <p class="cv-card__body__date">2023/06/01 - 2023/06/08</p>
+
+                                                <div class="clear-fix"></div>
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+                                        </div>
+
+                                        <div class="cv-card__body">
+                                            <p class="cv-card__body__description text-10" [innerHTML]="">
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="cv-card">
+                                        <div class="cv-card__title">
+                                            <div class="cv-card__title__start">
+                                                <span class="first">dddddd</span>
+                                                <!-- &nbsp;-&nbsp; -->
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+
+                                            <div class="cv-card__title__end cv-mt-0.4">
+                                                <span class="second">dddd</span>
+
+                                                <p class="cv-card__body__date">2023/08/02 - 2023/08/16</p>
+
+                                                <div class="clear-fix"></div>
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+                                        </div>
+
+                                        <div class="cv-card__body">
+                                            <p class="cv-card__body__description text-10" [innerHTML]="">
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="cv-card">
+                                        <div class="cv-card__title">
+                                            <div class="cv-card__title__start">
+                                                <span class="first">jhjhjhkj</span>
+                                                <!-- &nbsp;-&nbsp; -->
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+
+                                            <div class="cv-card__title__end cv-mt-0.4">
+                                                <span class="second">dfddfdf</span>
+
+                                                <p class="cv-card__body__date">2023/08/02 - 2023/08/10</p>
+
+                                                <div class="clear-fix"></div>
+                                            </div>
+
+                                            <div class="clear-fix"></div>
+                                        </div>
+
+                                        <div class="cv-card__body">
+                                            <p class="cv-card__body__description text-10" [innerHTML]="">
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="cv-individual-template__body__main__projects">
+                                    <div class="main-section-heading-en-1 fw-semibold">
+                                        <span>projects</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 18.141 19.488">
+                                            <path id="Path_21385" data-name="Path 21385"
+                                                d="M0,2.229S9.1,5.219,15.614,0c-3,11.643-14.605,11.933-14.605,11.933C5.071,8.752,5.917,5.9,5.917,5.9S3.145,5.825,0,2.229Z"
+                                                transform="translate(7.807 19.488) rotate(-120)"
+                                                fill="var(--cv-main-color-template, #00ab67)" />
+                                        </svg>
+                                    </div>
+
+
+
+                                    <div class="cv-card projects">
+                                        <div class="cv-card__title">
+                                            <a href="" class="cv-text-decor-none">
+                                                <span class="first"
+                                                    style="color: #2D2C2D; margin-right: 0.5rem;">hjkhjk</span>
+
+                                                <svg class="link-icon" fill="none" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    viewBox="0 0 24 24" width="20" height="20"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    style="color: var(--cv-main-color-template, #00ab67); vertical-align: text-top;">
+                                                    <path
+                                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                    <polyline points="15 3 21 3 21 9" />
+                                                    <line x1="10" x2="21" y1="14" y2="3" />
+                                                </svg>
+
+                                            </a>
+                                        </div>
+
+                                        <div class="cv-card__body">
+                                            <p class="cv-card__body__description mt-item text-10" [innerHTML]="">
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="clear-fix"></div>
+                        </div>
+
+
+                        <p class="cv-individual-template__copyright">All rights reserved for Careery</p>
+                    </div>
+
+                    <!-- Other Sections... -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(document).ready(updateScale);
+        $(window).resize(updateScale);
+
+        var $win = $('#wrapper');
+        var $lay = $('#layout');
+        var baseSize = {
+            w: 794,
+            h: 1122
+        }
+
+        function updateScale() {
+
+            var ww = $win.width();
+            var wh = $win.height();
+            var newScale = 1;
+
+            // compare ratios
+            if (ww / wh < baseSize.w / baseSize.h) { // tall ratio
+                newScale = ww / baseSize.w;
+            } else { // wide ratio
+                newScale = wh / baseSize.h;
+            }
+
+            $lay.css({ 
+                'webkitTransform':'scale(' + newScale + ',' + newScale + ')',
+                'MozTransform':'scale(' + newScale + ',' + newScale + ')',
+                'msTransform':'scale(' + newScale + ',' + newScale + ')',
+                'OTransform':'scale(' + newScale + ',' + newScale + ')',
+                'transform':'scale(' + newScale + ',' + newScale + ')'
+            });
+
+
+            console.log(newScale);
+        }
+
+        
+
+
+        // $(window).resize(function () {
+        //     console.log('resize');
+        //     setTimeout(function () {
+        //         console.log('resize me later');
+        //     }, 150);
+        // });
+
+    </script>
+</body>
+
+</html>
